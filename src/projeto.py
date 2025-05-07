@@ -14,3 +14,7 @@ class Projeto():
     def adicionar_data_inicio(self, data_inicio):
         ano, mes, dia = data_inicio.split('-')
         self.data_inicio = date(int(ano), int(mes),int(dia))
+
+    def adicionar_data_fim(self, data_fim):
+        ano, mes, dia = data_fim.split('-')
+        self.data_fim = date(int(ano), int(mes),int(dia))
