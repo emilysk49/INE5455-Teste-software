@@ -18,10 +18,13 @@ TDD - Lista de testes
 12 Adicionar salário negativo ao funcionario
 13. Adicionar data de inicio do projeto
 14. Adicionar data de fim do projeto
-15. Adicionar um objeto com um tipo diferente de funcionario como funcionario na empresa (falha)
-16. Adicionar um objeto com um tipo diferente de projeto como projeto na empresa (falha)
-17. Incluir funcionario em um projeto (não pertentence a empresa) (falha)
-18. Incluir funcionario em um projeto que já está adicionado (falha)
+15. Adicionar data final anterior a uma data inicial (adicionando primeiro a data inicial) (falha)
+16. Adicionar data final anterior a uma data inicial (adicionando primeiro a data final) (falha)
+
+17. Adicionar um objeto com um tipo diferente de funcionario como funcionario na empresa (falha)
+18. Adicionar um objeto com um tipo diferente de projeto como projeto na empresa (falha)
+19. Incluir funcionario em um projeto (não pertentence a empresa) (falha)
+20. Incluir funcionario em um projeto que já está adicionado (falha)
 
 
 
