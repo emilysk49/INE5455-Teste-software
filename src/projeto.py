@@ -15,7 +15,10 @@ class Projeto():
 
     def adicionar_data_inicio(self, data_inicio):
         ano, mes, dia = data_inicio.split('-')
-        self.data_inicio = date(int(ano), int(mes),int(dia))
+        data = date(int(ano), int(mes),int(dia))
+        if self.data_fim and data > self.data_fim:
+            raise ValueError("Data de início não pode ser posterior à data de fim.")
+        self.data_inicio = data
 
     def adicionar_data_fim(self, data_fim):
         ano, mes, dia = data_fim.split('-')
