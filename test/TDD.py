@@ -1,5 +1,6 @@
 import unittest
 from src.empresa import Empresa
+from src.funcionario import Funcionario
 
 class TDD(unittest.TestCase):
     def test1_criar_empresa_W(self):
@@ -10,7 +11,7 @@ class TDD(unittest.TestCase):
     def test2_criar_funcionario(self):
         jose = Funcionario("José")
         self.assertIsInstance(jose, Funcionario)
-        self.assertEqual(jose.nome, "Jose")
+        self.assertEqual(jose.nome, "José")
 
 if __name__ == '__main__':
     unittest.main()
