@@ -10,4 +10,6 @@ class Funcionario():
         self.projetos.append(projeto)
 
     def adicionar_salario(self, salario):
+        if salario < 0:
+            raise ValueError("Salário não pode ser negativo.")
         self.salario = salario
