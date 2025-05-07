@@ -83,5 +83,10 @@ class TDD(unittest.TestCase):
         jose.adicionar_salario(1000)
         self.assertEqual(jose.salario, 1000)
 
+    def test12_adicionar_salario_funcionario_negativo(self):
+        jose = Funcionario("José")
+        with self.assertRaises(ValueError):
+            jose.adicionar_salario(-1000)
+
 if __name__ == '__main__':
     unittest.main()
