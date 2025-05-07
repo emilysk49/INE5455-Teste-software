@@ -1,4 +1,5 @@
 import unittest
+from src.empresa import Empresa
 
 class TDD(unittest.TestCase):
     def test1_criar_empresa_W(self):
