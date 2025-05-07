@@ -7,6 +7,8 @@ class Empresa():
         self.projetos = []
 
     def adicionar_funcionario(self, funcionario):
+        if (not isinstance(funcionario, Funcionario)):
+            raise TypeError("O objeto não é um funcionário.")
         if (funcionario in self.funcionarios):
             raise ValueError("Funcionário já cadastrado.")
         self.funcionarios.append(funcionario)
