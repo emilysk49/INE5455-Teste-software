@@ -13,5 +13,11 @@ class TDD(unittest.TestCase):
         self.assertIsInstance(jose, Funcionario)
         self.assertEqual(jose.nome, "José")
 
+    def test3_criar_projeto(self):
+        projeto1_X = Projeto("X", 123)
+        self.assertIsInstance(projeto1_X, Projeto)
+        self.assertEqual(projeto1_X.nome, "X")
+        self.assertEqual(projeto1_X.codigo, 123)
+
 if __name__ == '__main__':
     unittest.main()
