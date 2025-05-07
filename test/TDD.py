@@ -20,5 +20,11 @@ class TDD(unittest.TestCase):
         self.assertEqual(projeto1_X.nome, "X")
         self.assertEqual(projeto1_X.codigo, 123)
 
+    def test4_adicionar_funcionario_empresa(self):
+        empresa_W = Empresa("W")
+        jose = Funcionario("José")
+        empresa_W.adicionar_funcionario(jose)
+        self.assertIn(jose, empresa_W.funcionarios)
+
 if __name__ == '__main__':
     unittest.main()

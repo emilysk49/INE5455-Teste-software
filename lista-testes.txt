@@ -13,4 +13,6 @@ TDD - Lista de testes
 10. Incluir funcionario	em um projeto repetido (falha)
 
 --- Descobertos durante implementação ---
-11. 
+11. Adicionar salário ao funcionario
+12. Adicionar data de inicio do projeto
+13. Adicionar data de fim do projeto
