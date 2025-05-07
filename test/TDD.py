@@ -78,5 +78,10 @@ class TDD(unittest.TestCase):
         with self.assertRaises(ValueError):
             jose.adicionar_projeto(projeto1_X)
 
+    def test11_adicionar_salario_funcionario(self):
+        jose = Funcionario("José")
+        jose.adicionar_salario(1000)
+        self.assertEqual(jose.salario, 1000)
+
 if __name__ == '__main__':
     unittest.main()
