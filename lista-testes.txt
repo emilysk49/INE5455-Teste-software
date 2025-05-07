@@ -26,6 +26,8 @@ TDD - Lista de testes
 20. Incluir funcionario em um projeto que já está adicionado (falha)
 
 
+ADICIONAR TESTES PARA MAIS DE UM FUNCIONARIO E PARA MAIS DE UM PROJETO E PERMUTAÇÕES
+
 
 * 10.1 e 10.2 são testes que na prática servem para a mesma coisa, contudo, na implementação precisamos ter 2 raises diferentes.
 Dado que o código sempre roda o insert do funcionario no projeto, apenas esse raise seria testado, acarretando em códigos sem coverage.
