@@ -15,13 +15,13 @@ TDD - Lista de testes
 --- Descobertos durante implementação ---
 10.2 Incluir projeto em funcionario repetido 
 11. Adicionar salário ao funcionario
-11.1 Adicionar salário negativo ao funcionario
-12. Adicionar data de inicio do projeto
-13. Adicionar data de fim do projeto
-14. Adicionar um objeto com um tipo diferente de funcionario como funcionario na empresa (falha)
-15. Adicionar um objeto com um tipo diferente de projeto como projeto na empresa (falha)
-16. Incluir funcionario em um projeto (não pertentence a empresa) (falha)
-17. Incluir funcionario em um projeto que já está adicionado (falha)
+12 Adicionar salário negativo ao funcionario
+13. Adicionar data de inicio do projeto
+14. Adicionar data de fim do projeto
+15. Adicionar um objeto com um tipo diferente de funcionario como funcionario na empresa (falha)
+16. Adicionar um objeto com um tipo diferente de projeto como projeto na empresa (falha)
+17. Incluir funcionario em um projeto (não pertentence a empresa) (falha)
+18. Incluir funcionario em um projeto que já está adicionado (falha)
 
 
 
