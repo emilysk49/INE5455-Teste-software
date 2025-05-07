@@ -12,4 +12,6 @@ class Empresa():
         self.funcionarios.append(funcionario)
 
     def adicionar_projeto(self, projeto):
+        if (projeto in self.projetos):
+            raise ValueError("Projeto já cadastrado.")
         self.projetos.append(projeto)
