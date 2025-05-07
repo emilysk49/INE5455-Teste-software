@@ -108,6 +108,14 @@ class TDD(unittest.TestCase):
         projeto1_X.adicionar_data_inicio(data_inicio)
         with self.assertRaises(ValueError):
             projeto1_X.adicionar_data_fim(data_fim)
+    
+    def test_16_adicionar_data_fim_anterior_a_data_inicio_comecando_pela_data_final(self):
+        projeto1_X = Projeto("X", 123)
+        data_fim = "2025-01-31"
+        data_inicio = "2025-02-28"
+        projeto1_X.adicionar_data_fim(data_fim)
+        with self.assertRaises(ValueError):
+            projeto1_X.adicionar_data_inicio(data_inicio)
 
 if __name__ == '__main__':
     unittest.main()
