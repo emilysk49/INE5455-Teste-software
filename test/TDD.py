@@ -101,5 +101,13 @@ class TDD(unittest.TestCase):
         projeto1_X.adicionar_data_fim(data_fim)
         self.assertEqual(projeto1_X.data_fim.isoformat(), data_fim)
 
+    def test_15_adicionar_data_fim_anterior_a_data_inicio_comecando_pela_data_inicial(self):
+        projeto1_X = Projeto("X", 123)
+        data_inicio = "2025-02-28"
+        data_fim = "2025-01-31"
+        projeto1_X.adicionar_data_inicio(data_inicio)
+        with self.assertRaises(ValueError):
+            projeto1_X.adicionar_data_fim(data_fim)
+
 if __name__ == '__main__':
     unittest.main()
