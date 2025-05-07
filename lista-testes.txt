@@ -1,3 +1,15 @@
 TDD - Lista de testes
 
-1. 
+----- Iniciais -----
+1. Instanciar empresa W
+2. Instanciar funcionario
+3. Instanciar projeto
+4. Incluir funcionarios na empresa W
+5. Incluir funcionarios repetido na empresa W (falha)
+6. Incluir projetos na empresa W
+7. Incluir projetos repetidos na empresa W (falha)
+8. Incluir funcionario (pertentence a empresa) em um projeto
+9. Incluir funcionario (não pertentence a empresa) em um projeto (falha)
+10. Incluir funcionario	em um projeto repetido (falha)
+
+--- Descobertos durante implementação ---
