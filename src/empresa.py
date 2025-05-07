@@ -6,4 +6,6 @@ class Empresa():
         self.funcionarios = []
 
     def adicionar_funcionario(self, funcionario):
+        if (funcionario in self.funcionarios):
+            raise ValueError("Funcionário já cadastrado.")
         self.funcionarios.append(funcionario)

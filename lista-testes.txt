@@ -16,3 +16,5 @@ TDD - Lista de testes
 11. Adicionar salário ao funcionario
 12. Adicionar data de inicio do projeto
 13. Adicionar data de fim do projeto
+14. Adicionar um objeto com um tipo diferente de funcionario como funcionario na empresa (falha)
+15. Adicionar um objeto com um tipo diferente de projeto como projeto na empresa (falha)
