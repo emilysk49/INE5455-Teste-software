@@ -10,9 +10,10 @@ TDD - Lista de testes
 7. Incluir projetos repetidos na empresa W (falha)
 8. Incluir funcionario em um projeto
 9. Incluir funcionario (não pertentence a empresa) em um projeto (falha)
-10. Incluir funcionario	em um projeto repetido (falha)
+10.1 Incluir funcionario em um projeto repetido (falha)
 
 --- Descobertos durante implementação ---
+10.2 Incluir projeto em funcionario repetido 
 11. Adicionar salário ao funcionario
 12. Adicionar data de inicio do projeto
 13. Adicionar data de fim do projeto
@@ -21,3 +22,7 @@ TDD - Lista de testes
 16. Incluir funcionario em um projeto (não pertentence a empresa) (falha)
 17. Incluir funcionario em um projeto que já está adicionado (falha)
 
+
+
+* 10.1 e 10.2 são testes que na prática servem para a mesma coisa, contudo, na implementação precisamos ter 2 raises diferentes.
+Dado que o código sempre roda o insert do funcionario no projeto, apenas esse raise seria testado, acarretando em códigos sem coverage.
