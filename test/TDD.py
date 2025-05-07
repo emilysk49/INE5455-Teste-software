@@ -1,6 +1,7 @@
 import unittest
 from src.empresa import Empresa
 from src.funcionario import Funcionario
+from src.projeto import Projeto
 
 class TDD(unittest.TestCase):
     def test1_criar_empresa_W(self):
