@@ -117,5 +117,11 @@ class TDD(unittest.TestCase):
         with self.assertRaises(ValueError):
             projeto1_X.adicionar_data_inicio(data_inicio)
 
+    def test_17_adicionar_funcionario_com_tipo_diferente(self):
+        empresa_W = Empresa("W")
+        projeto1_X = Projeto("X", 123)
+        with self.assertRaises(ValueError):
+            empresa_W.adicionar_funcionario(projeto1_X)
+
 if __name__ == '__main__':
     unittest.main()
