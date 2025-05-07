@@ -26,5 +26,12 @@ class TDD(unittest.TestCase):
         empresa_W.adicionar_funcionario(jose)
         self.assertIn(jose, empresa_W.funcionarios)
 
+    def test5_adicionar_funcionario_repetido_empresa(self):
+        empresa_W = Empresa("W")
+        jose = Funcionario("José")
+        empresa_W.adicionar_funcionario(jose)
+        with self.assertRaises(ValueError):
+            empresa_W.adicionar_funcionario(jose)
+
 if __name__ == '__main__':
     unittest.main()
