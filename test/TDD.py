@@ -70,6 +70,13 @@ class TDD(unittest.TestCase):
         projeto1_X.adicionar_funcionario(jose)
         with self.assertRaises(ValueError):
             projeto1_X.adicionar_funcionario(jose)
+    
+    def test10_2_adicionar_projeto_em_um_funcionario_repetido(self):
+        jose = Funcionario("José")
+        projeto1_X = Projeto("X", 123)
+        jose.adicionar_projeto(projeto1_X)
+        with self.assertRaises(ValueError):
+            jose.adicionar_projeto(projeto1_X)
 
 if __name__ == '__main__':
     unittest.main()
