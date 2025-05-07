@@ -129,5 +129,15 @@ class TDD(unittest.TestCase):
         with self.assertRaises(TypeError):
             empresa_W.adicionar_projeto(jose)
 
+    def test_19_incluir_funcionario_em_projeto_que_nao_pertence_a_empresa(self):
+        empresa_W = Empresa("W")
+        empresa_Y = Empresa("Y")
+        projeto1_X = Projeto("X", 123)
+        jose = Funcionario("José")
+        empresa_Y.adicionar_projeto(projeto1_X)
+        empresa_W.adicionar_funcionario(jose)
+        with self.assertRaises(ValueError):
+            empresa_W.adicionar_funcionario_em_projeto(jose, projeto1_X)
+
 if __name__ == '__main__':
     unittest.main()
