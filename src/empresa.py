@@ -1,4 +1,5 @@
 from src.funcionario import Funcionario
+from src.projeto import Projeto
 
 class Empresa():
     def __init__(self, nome):
@@ -14,6 +15,8 @@ class Empresa():
         self.funcionarios.append(funcionario)
 
     def adicionar_projeto(self, projeto):
+        if (not isinstance(projeto, Projeto)):
+            raise TypeError("O objeto não é um projeto.")
         if (projeto in self.projetos):
             raise ValueError("Projeto já cadastrado.")
         self.projetos.append(projeto)
