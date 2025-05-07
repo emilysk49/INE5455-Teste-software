@@ -5,6 +5,8 @@ class Projeto():
         self.nome = nome
         self.codigo = codigo
         self.funcionarios = []
+        self.data_inicio = None
+        self.data_fim = None
 
     def adicionar_funcionario(self, funcionario):
         if funcionario in self.funcionarios:
@@ -17,4 +19,7 @@ class Projeto():
 
     def adicionar_data_fim(self, data_fim):
         ano, mes, dia = data_fim.split('-')
-        self.data_fim = date(int(ano), int(mes),int(dia))
+        data = date(int(ano), int(mes),int(dia))
+        if self.data_inicio and self.data_inicio > data:
+            raise ValueError("Data de fim não pode ser anterior à data de início.")
+        self.data_fim = data
