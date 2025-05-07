@@ -2,6 +2,7 @@ import unittest
 from src.empresa import Empresa
 from src.funcionario import Funcionario
 from src.projeto import Projeto
+from datetime import date
 
 class TDD(unittest.TestCase):
     def test1_criar_empresa_W(self):
@@ -90,9 +91,9 @@ class TDD(unittest.TestCase):
 
     def test_13_adicionar_data_inicio_projeto(self):
         projeto1_X = Projeto("X", 123)
-        data_inicio = "2025-01-01"
+        data_inicio = "2025-01-31"
         projeto1_X.adicionar_data_inicio(data_inicio)
-        self.assertEqual(projeto1_X.data_inicio, data_inicio)
+        self.assertEqual(projeto1_X.data_inicio.isoformat(), data_inicio)
 
 if __name__ == '__main__':
     unittest.main()
