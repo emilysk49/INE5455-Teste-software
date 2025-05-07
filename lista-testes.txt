@@ -23,7 +23,8 @@ TDD - Lista de testes
 17. Adicionar um objeto com um tipo diferente de funcionario como funcionario na empresa (falha)
 18. Adicionar um objeto com um tipo diferente de projeto como projeto na empresa (falha)
 19. Incluir funcionario em um projeto (não pertentence a empresa) (falha)
-20. Incluir funcionario em um projeto que já está adicionado (falha)
+20. Adicionar objeto com tipo diferente de funcionario a um projeto (falha)
+21. Adicionar objeto com tipo diferente de projeto a um funcionario (falha)
 
 
 ADICIONAR TESTES PARA MAIS DE UM FUNCIONARIO E PARA MAIS DE UM PROJETO E PERMUTAÇÕES
