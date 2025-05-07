@@ -141,7 +141,7 @@ class TDD(unittest.TestCase):
 
     def test_20_adicionar_funcionario_com_tipo_diferente_em_projeto(self):
         projeto1_X = Projeto("X", 123)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             projeto1_X.adicionar_funcionario(projeto1_X)
 
 

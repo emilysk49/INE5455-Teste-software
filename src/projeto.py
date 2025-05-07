@@ -1,4 +1,5 @@
 from datetime import date
+from src.funcionario import Funcionario
 
 class Projeto():
     def __init__(self, nome, codigo):
@@ -9,6 +10,8 @@ class Projeto():
         self.data_fim = None
 
     def adicionar_funcionario(self, funcionario):
+        if not isinstance(funcionario, Funcionario):
+            raise TypeError("Funcionário deve ser do tipo Funcionario.")
         if funcionario in self.funcionarios:
             raise ValueError("Funcionário já adicionado ao projeto.")
         self.funcionarios.append(funcionario)
