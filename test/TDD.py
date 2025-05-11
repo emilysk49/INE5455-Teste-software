@@ -143,6 +143,11 @@ class TDD(unittest.TestCase):
         projeto1_X = Projeto("X", 123)
         with self.assertRaises(TypeError):
             projeto1_X.adicionar_funcionario(projeto1_X)
+    
+    def test_21_adicionar_projeto_com_tipo_diferente_em_funcionario(self):
+        jose = Funcionario("José")
+        with self.assertRaises(TypeError):
+            jose.adicionar_projeto(jose)
 
 
 if __name__ == '__main__':
