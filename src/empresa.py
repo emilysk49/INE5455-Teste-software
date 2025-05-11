@@ -19,6 +19,7 @@ class Empresa():
             raise TypeError("O objeto não é um projeto.")
         if (projeto in self.projetos):
             raise ValueError("Projeto já cadastrado.")
+        projeto.adicionar_a_empresa(self)
         self.projetos.append(projeto)
 
     def adicionar_funcionario_em_projeto(self, funcionario, projeto):

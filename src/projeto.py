@@ -8,6 +8,12 @@ class Projeto():
         self.funcionarios = []
         self.data_inicio = None
         self.data_fim = None
+        self.empresa = None
+
+    def adicionar_a_empresa(self, empresa):
+        if self.empresa is not None:
+            raise ValueError("Projeto já associado a uma empresa.")
+        self.empresa = empresa
 
     def adicionar_funcionario(self, funcionario):
         if not isinstance(funcionario, Funcionario):
