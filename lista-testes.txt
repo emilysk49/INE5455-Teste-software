@@ -29,7 +29,8 @@ TDD - Lista de testes
 22. Adicionar 2 funcionarios em um projeto
 23. Adicionar 2 projetos em uma empresa
 24. Adicionar 2 funcionarios a 2 projetos diferentes
-ADICIONAR TESTES PARA MAIS DE UM FUNCIONARIO E PARA MAIS DE UM PROJETO E PERMUTAÇÕES
+25. Adicionar um mesmo projeto a duas empresas diferentes (falha)
+
 
 
 * 10.1 e 10.2 são testes que na prática servem para a mesma coisa, contudo, na implementação precisamos ter 2 raises diferentes.

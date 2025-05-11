@@ -173,6 +173,27 @@ class TDD(unittest.TestCase):
         self.assertIn(projeto1_X, empresa_W.projetos)
         self.assertIn(projeto2_Y, empresa_W.projetos)
 
+    def test_24_adicionar_dois_funcionarios_a_dois_projetos_diferentes(self):
+        empresa_W = Empresa("W")
+        projeto1_X = Projeto("X", 123)
+        projeto2_Y = Projeto("Y", 456)
+        jose = Funcionario("José")
+        maria = Funcionario("Maria")
+        empresa_W.adicionar_funcionario(jose)
+        empresa_W.adicionar_funcionario(maria)
+        empresa_W.adicionar_projeto(projeto1_X)
+        empresa_W.adicionar_projeto(projeto2_Y)
+        empresa_W.adicionar_funcionario_em_projeto(jose, projeto1_X)
+        empresa_W.adicionar_funcionario_em_projeto(maria, projeto1_X)
+        empresa_W.adicionar_funcionario_em_projeto(maria, projeto2_Y)
+        empresa_W.adicionar_funcionario_em_projeto(jose, projeto2_Y)
+        self.assertIn(jose, projeto1_X.funcionarios)
+        self.assertIn(maria, projeto2_Y.funcionarios)
+        self.assertIn(projeto1_X, jose.projetos)
+        self.assertIn(projeto2_Y, maria.projetos)
+        self.assertIn(projeto2_Y, jose.projetos)
+        self.assertIn(projeto1_X, maria.projetos)
+
 
 if __name__ == '__main__':
     unittest.main()
