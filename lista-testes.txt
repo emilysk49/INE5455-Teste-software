@@ -15,7 +15,7 @@ TDD - Lista de testes
 --- Descobertos durante implementação ---
 10.2 Incluir projeto em funcionario repetido 
 11. Adicionar salário ao funcionario
-12 Adicionar salário negativo ao funcionario
+12. Adicionar salário negativo ao funcionario
 13. Adicionar data de inicio do projeto
 14. Adicionar data de fim do projeto
 15. Adicionar data final anterior a uma data inicial (adicionando primeiro a data inicial) (falha)
@@ -26,7 +26,9 @@ TDD - Lista de testes
 20. Adicionar objeto com tipo diferente de funcionario a um projeto (falha)
 21. Adicionar objeto com tipo diferente de projeto a um funcionario (falha)
 
-
+22. Adicionar 2 funcionarios em um projeto
+23. Adicionar 2 projetos em uma empresa
+24. Adicionar 2 funcionarios a 2 projetos diferentes
 ADICIONAR TESTES PARA MAIS DE UM FUNCIONARIO E PARA MAIS DE UM PROJETO E PERMUTAÇÕES
 
 
