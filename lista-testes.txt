@@ -39,8 +39,8 @@ Dado que o código sempre roda o insert do funcionario no projeto, apenas esse r
 ---------------------------------------------------------------------------------------------------------------------------------------
 Parte 2 
 26. Instanciar uma ocorrência
-27. Inserir uma ocorrência em um projeto
-28. Inserir uma ocorrência em um projeto que não está na empresa
+27. Inserir uma ocorrência em um projeto 
+28. Inserir uma ocorrência em um projeto de outra empresa
 29. Inserir uma ocorrência com um funcionario que não está na empresa
 30. Inserir uma ocorrência com um funcionario que não está no projeto
 31. Inserir mais de uma ocorrência

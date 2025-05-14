@@ -3,6 +3,7 @@ from src.empresa import Empresa
 from src.funcionario import Funcionario
 from src.projeto import Projeto
 from test.testHelper import *
+from src.ocorrencia import *
 from datetime import date
 
 class TDD(unittest.TestCase):
@@ -205,7 +206,43 @@ class TDD(unittest.TestCase):
 
 #################### AULA 2 TDD DAQUI PARA BAIXO ####################
 
+    def test_26_instanciar_ocorrencia(self):
+        projeto1_X = Projeto("X", 123)
+        jose = Funcionario("José")
+        ocorrencia1 = Ocorrencia(123, jose, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, projeto1_X)
+        self.assertIsInstance(ocorrencia1, Ocorrencia)
+        self.assertEqual(ocorrencia1.id, 123)
+        self.assertEqual(ocorrencia1.descricao, "Descrição da ocorrência 1")
+        self.assertEqual(ocorrencia1.tipo, TipoOcorrencia.MELHORIA)
+        self.assertEqual(ocorrencia1.funcionario, jose)
+        self.assertEqual(ocorrencia1.projeto, projeto1_X)
+    
+    def test_27_inserir_uma_ocorrencia_em_um_projeto(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
 
+    def test_28_inserir_ocorrencia_projeto_outra_empresa(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_Y, funcionarios2, projetos2 = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        f2 = funcionarios2[0]
+        p2 = projetos2[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_Y.adicionar_funcionario_em_projeto(f2, p2)
+        with self.assertRaises(ValueError):
+            f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p2)
+    
+    def test_29_inserir_ocorrencia_funcionario_sem_empresa(self):
+        empresa_W = Empresa("W")
+        f1 = Funcionario("José")
+        p1 = Projeto("X", 123)
+        empresa_W.adicionar_projeto(p1)
+        with self.assertRaises(ValueError):
+            f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
 
 if __name__ == '__main__':
     unittest.main()

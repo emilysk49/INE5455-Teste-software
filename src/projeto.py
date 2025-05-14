@@ -9,6 +9,7 @@ class Projeto():
         self.data_inicio = None
         self.data_fim = None
         self.empresa = None
+        self.ocorrencias = []
 
     def adicionar_a_empresa(self, empresa):
         if self.empresa is not None:
@@ -21,6 +22,9 @@ class Projeto():
         if funcionario in self.funcionarios:
             raise ValueError("Funcionário já adicionado ao projeto.")
         self.funcionarios.append(funcionario)
+
+    def adicionar_ocorrencia(self, ocorrencia):
+        self.ocorrencias.append(ocorrencia)
 
     def adicionar_data_inicio(self, data_inicio):
         ano, mes, dia = data_inicio.split('-')
