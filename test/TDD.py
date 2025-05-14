@@ -2,6 +2,7 @@ import unittest
 from src.empresa import Empresa
 from src.funcionario import Funcionario
 from src.projeto import Projeto
+from test.testHelper import *
 from datetime import date
 
 class TDD(unittest.TestCase):
@@ -201,6 +202,9 @@ class TDD(unittest.TestCase):
         empresa_W.adicionar_projeto(projeto1_X)
         with self.assertRaises(ValueError):
             empresa_Y.adicionar_projeto(projeto1_X)
+
+#################### AULA 2 TDD DAQUI PARA BAIXO ####################
+
 
 
 if __name__ == '__main__':
