@@ -28,10 +28,12 @@ class Funcionario():
         # from src.projeto import Projeto
         # if not isinstance(projeto, Projeto):
         #     raise TypeError("Projeto deve ser do tipo Projeto.")
-        # if projeto not in self.projetos:
-        #     raise ValueError("Projeto não está associado ao funcionário.")
+        if len(self.ocorrencias) >= 10:
+            raise ValueError("Número máximo de ocorrências atingido.")
         if projeto.empresa != self.empresa:
             raise ValueError("Projeto não pertence à empresa do funcionário.")
+        if projeto not in self.projetos:
+            raise ValueError("Projeto não está associado ao funcionário.")
         ocorrencia = Ocorrencia(id, self, descricao, tipo, projeto)
         self.ocorrencias.append(ocorrencia)
         projeto.adicionar_ocorrencia(ocorrencia)

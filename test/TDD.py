@@ -245,5 +245,74 @@ class TDD(unittest.TestCase):
         with self.assertRaises(ValueError):
             f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
 
+    def test_30_inserir_ocorrencia_projeto_nao_pertence(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(2,2)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        f2 = funcionarios[1]
+        p2 = projetos[1]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p2)
+        with self.assertRaises(ValueError):
+            f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p2)
+
+    def test_31_inserir_mais_de_uma_ocorrencia(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(3,1)
+        f1 = funcionarios[0]
+        f2 = funcionarios[1]
+        f3 = funcionarios[2]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f3, p1)
+        f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        f2.criar_ocorrencia(457, "Descrição da ocorrência 2", TipoOcorrencia.TAREFA, p1)
+        f3.criar_ocorrencia(890, "Descrição da ocorrência 3", TipoOcorrencia.BUG, p1)
+        self.assertEqual(len(p1.ocorrencias), 3)
+        self.assertEqual(f1.ocorrencias[0], p1.ocorrencias[0])
+        self.assertEqual(f2.ocorrencias[0], p1.ocorrencias[1])
+        self.assertEqual(f3.ocorrencias[0], p1.ocorrencias[2])
+
+    def test_32_funcionario_responsavel_mais_de_uma_ocorrencia(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        f1.criar_ocorrencia(457, "Descrição da ocorrência 2", TipoOcorrencia.TAREFA, p1)
+        f1.criar_ocorrencia(890, "Descrição da ocorrência 3", TipoOcorrencia.BUG, p1)
+        self.assertEqual(len(p1.ocorrencias), 3)
+        self.assertEqual(len(f1.ocorrencias), 3)
+        self.assertEqual(f1.ocorrencias[0], p1.ocorrencias[0])
+        self.assertEqual(f1.ocorrencias[1], p1.ocorrencias[1])
+        self.assertEqual(f1.ocorrencias[2], p1.ocorrencias[2])
+
+    def test_33_bloqueio_ao_tentar_inserir_11_ocorrencias(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        f1.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        f1.criar_ocorrencia(2, "Descrição da ocorrência 2", TipoOcorrencia.TAREFA, p1)
+        f1.criar_ocorrencia(3, "Descrição da ocorrência 3", TipoOcorrencia.BUG, p1)
+        f1.criar_ocorrencia(4, "Descrição da ocorrência 4", TipoOcorrencia.MELHORIA, p1)
+        f1.criar_ocorrencia(5, "Descrição da ocorrência 5", TipoOcorrencia.TAREFA, p1)
+        f1.criar_ocorrencia(6, "Descrição da ocorrência 6", TipoOcorrencia.BUG, p1)
+        f1.criar_ocorrencia(7, "Descrição da ocorrência 7", TipoOcorrencia.MELHORIA, p1)
+        f1.criar_ocorrencia(8, "Descrição da ocorrência 8", TipoOcorrencia.TAREFA, p1)
+        f1.criar_ocorrencia(9, "Descrição da ocorrência 9", TipoOcorrencia.BUG, p1)
+        f1.criar_ocorrencia(10, "Descrição da ocorrência 10", TipoOcorrencia.MELHORIA, p1)
+        with self.assertRaises(ValueError):
+            f1.criar_ocorrencia(11, "Descrição da ocorrência 11", TipoOcorrencia.TAREFA, p1)
+
+    def test_34_instanciar_ocorrencia_sem_resumo(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        with self.assertRaises(ValueError):
+            f1.criar_ocorrencia(1, "", TipoOcorrencia.MELHORIA, p1)
+    
+
 if __name__ == '__main__':
     unittest.main()

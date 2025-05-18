@@ -12,6 +12,8 @@ class EstadoOcorrencia(Enum):
 
 class Ocorrencia:
     def __init__(self, id, funcionario, descricao, tipo, projeto):
+        if descricao is None or descricao == "":
+            raise ValueError("Descrição não pode ser vazia")
         self.id = id
         self.descricao = descricao
         self.estado = EstadoOcorrencia.ABERTO
