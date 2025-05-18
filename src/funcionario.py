@@ -6,6 +6,7 @@ class Funcionario():
         self.projetos = []
         self.salario = None
         self.empresa = None
+        self.ocorrencias = []
 
     def adicionar_projeto(self, projeto):
         from src.projeto import Projeto
@@ -32,4 +33,5 @@ class Funcionario():
         if projeto.empresa != self.empresa:
             raise ValueError("Projeto não pertence à empresa do funcionário.")
         ocorrencia = Ocorrencia(id, self, descricao, tipo, projeto)
+        self.ocorrencias.append(ocorrencia)
         projeto.adicionar_ocorrencia(ocorrencia)

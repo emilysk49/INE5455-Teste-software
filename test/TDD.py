@@ -223,6 +223,7 @@ class TDD(unittest.TestCase):
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
         f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        self.assertEqual(f1.ocorrencias[0], p1.ocorrencias[0])
 
     def test_28_inserir_ocorrencia_projeto_outra_empresa(self):
         empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
