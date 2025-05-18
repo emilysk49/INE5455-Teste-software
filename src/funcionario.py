@@ -1,4 +1,4 @@
-from src.ocorrencia import Ocorrencia
+from src.ocorrencia import *
 
 class Funcionario():
     def __init__(self, nome):
@@ -24,7 +24,7 @@ class Funcionario():
     def adicionar_a_empresa(self, empresa):
         self.empresa = empresa
     
-    def criar_ocorrencia(self, id, descricao, tipo, projeto):
+    def criar_ocorrencia(self, id, descricao, tipo, projeto, prioridade=PrioridadeOcorrencia.MEDIA):
         # from src.projeto import Projeto
         # if not isinstance(projeto, Projeto):
         #     raise TypeError("Projeto deve ser do tipo Projeto.")
@@ -34,6 +34,8 @@ class Funcionario():
             raise ValueError("Projeto não pertence à empresa do funcionário.")
         if projeto not in self.projetos:
             raise ValueError("Projeto não está associado ao funcionário.")
-        ocorrencia = Ocorrencia(id, self, descricao, tipo, projeto)
+        ocorrencia = Ocorrencia(id, self, descricao, tipo, projeto, prioridade)
         self.ocorrencias.append(ocorrencia)
         projeto.adicionar_ocorrencia(ocorrencia)
+
+        return ocorrencia

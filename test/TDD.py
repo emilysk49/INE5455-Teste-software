@@ -312,7 +312,74 @@ class TDD(unittest.TestCase):
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
         with self.assertRaises(ValueError):
             f1.criar_ocorrencia(1, "", TipoOcorrencia.MELHORIA, p1)
-    
 
+    def test_35_instanciar_ocorrencia_com_prioridade_alta(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1, PrioridadeOcorrencia.ALTA)
+        self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.ALTA)
+    
+    def test_36_instanciar_ocorrencia_com_prioridade_media(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1, PrioridadeOcorrencia.MEDIA)
+        self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.MEDIA)
+    
+    def test_37_instanciar_ocorrencia_com_prioridade_baixa(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1, PrioridadeOcorrencia.BAIXA)
+        self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.BAIXA)
+    
+    def test_38_instanciar_ocorrencia_com_prioridade_inexistente(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        with self.assertRaises(ValueError):
+            f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1, "inexistente")
+        
+    def test_39_modificar_prioridade_ocorrencia_para_alta(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        ocorrencia1.modificar_prioridade(PrioridadeOcorrencia.ALTA)
+        self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.ALTA)
+    
+    def test_40_modificar_prioridade_ocorrencia_para_media(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1, PrioridadeOcorrencia.BAIXA)
+        ocorrencia1.modificar_prioridade(PrioridadeOcorrencia.MEDIA)
+        self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.MEDIA)
+
+    def test_41_modificar_prioridade_ocorrencia_para_baixa(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        ocorrencia1.modificar_prioridade(PrioridadeOcorrencia.BAIXA)
+        self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.BAIXA)
+    
+    def test_42_modificar_prioridade_ocorrencia_para_inexistente(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        with self.assertRaises(ValueError):
+            ocorrencia1.modificar_prioridade("inexistente")
+        
 if __name__ == '__main__':
     unittest.main()
