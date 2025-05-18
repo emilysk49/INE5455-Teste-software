@@ -70,8 +70,8 @@ Parte 2
 55. Instanciar ocorrêcia com tipo "bug"
 56. Instanciar ocorrêcia com tipo "melhoria"
 57. Instanciar ocorrêcia com tipo um inexistente (falha)
-58. 
-59.
+58. Criar ocorrencia com ID já existente (falha)
+59. Criar ocorrencia passando o tipo errado para projeto
 60.
 61.
 

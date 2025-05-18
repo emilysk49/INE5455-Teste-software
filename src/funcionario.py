@@ -25,9 +25,9 @@ class Funcionario():
         self.empresa = empresa
     
     def criar_ocorrencia(self, id, descricao, tipo, projeto, prioridade=PrioridadeOcorrencia.MEDIA):
-        # from src.projeto import Projeto
-        # if not isinstance(projeto, Projeto):
-        #     raise TypeError("Projeto deve ser do tipo Projeto.")
+        from src.projeto import Projeto
+        if not isinstance(projeto, Projeto):
+            raise TypeError("Projeto deve ser do tipo Projeto.")
         if len(self.ocorrencias) >= 10:
             raise ValueError("Número máximo de ocorrências atingido.")
         if projeto.empresa != self.empresa:
@@ -35,8 +35,8 @@ class Funcionario():
         if projeto not in self.projetos:
             raise ValueError("Projeto não está associado ao funcionário.")
         ocorrencia = Ocorrencia(id, self, descricao, tipo, projeto, prioridade)
-        self.ocorrencias.append(ocorrencia)
         projeto.adicionar_ocorrencia(ocorrencia)
+        self.ocorrencias.append(ocorrencia)
 
         return ocorrencia
     

@@ -20,6 +20,8 @@ class Ocorrencia:
             raise ValueError("Descrição não pode ser vazia")
         if not isinstance(prioridade, PrioridadeOcorrencia):
             raise ValueError("Prioridade deve ser do tipo PrioridadeOcorrencia")
+        if not isinstance(tipo, TipoOcorrencia):
+            raise ValueError("Tipo deve ser do tipo TipoOcorrencia")
         self.id = id
         self.descricao = descricao
         self.estado = EstadoOcorrencia.ABERTO
@@ -37,6 +39,8 @@ class Ocorrencia:
         self.estado = EstadoOcorrencia.FECHADO
     
     def alterar_funcionario(self, funcionario):
+        if self.estado == EstadoOcorrencia.FECHADO:
+            raise ValueError("Não é possível alterar o funcionário de uma ocorrência fechada.")
         self.funcionario.remover_ocorrencia(self.id)
         self.funcionario = funcionario
         funcionario.adicionar_ocorrencia(self)

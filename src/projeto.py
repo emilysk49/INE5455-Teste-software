@@ -24,6 +24,8 @@ class Projeto():
         self.funcionarios.append(funcionario)
 
     def adicionar_ocorrencia(self, ocorrencia):
+        if (ocorrencia.id in [o.id for o in self.ocorrencias]):
+            raise ValueError("Ocorrência com esse ID já adicionada ao projeto.")
         self.ocorrencias.append(ocorrencia)
 
     def adicionar_data_inicio(self, data_inicio):
