@@ -57,20 +57,20 @@ Parte 2
 42. Modificar prioridade de uma ocorrêcia para um valor inexistente (falha)
 43. Fechar uma ocorrência onde o funcionario participa de 1 ocorrêcia
 44. Fechar uma ocorrência onde o funcionario participa de 5 ocorrências
-45. Fechar uma ocorrência onde o funcionario participa de 10 ocorrências
-46. Modificar responsavel pela ocorrêcia por um funcionario trabalhando no mesmo projeto
-47. Bloqueio ao modificar responsavel pela ocorrêcia por um funcionario que não está no mesmo projeto
-48. Bloqueio ao tentar modificar funcionario responsavel por ocorrêcia fechada
-49. Bloqueio ao tentar modificar prioridade de ocorrêcia fechada
-50. Instanciar ocorrêcia com tipo "tarefa" 
-51. Instanciar ocorrêcia com tipo "bug"
-52. Instanciar ocorrêcia com tipo "melhoria"
-53. Instanciar ocorrêcia com tipo um inexistente (falha)
-54. Bloqueio ao tentar modificar tipo de ocorrência fechada
-55. Bloqueio ao tentar fechar uma ocorrêcia já fechada
-56. Adicionar funcionario a uma décima ocorrêcia logo após uma delas ter sido fechada
+45. Fechar uma ocorrência onde o funcionario participa de 10 ocorrências e adicionar funcionario a uma nova décima ocorrêcia
+46. Funcionario tenta fechar uma ocorrencia	que pertence a outro funcionario (falha)
+57. Bloqueio ao tentar fechar uma ocorrêcia já fechada
+48. Modificar responsavel pela ocorrêcia por um funcionario trabalhando no mesmo projeto
+49. Bloqueio ao modificar responsavel pela ocorrêcia por um funcionario que não está no mesmo projeto
+50. Bloqueio ao tentar modificar funcionario responsavel por ocorrêcia fechada
+51. Bloqueio ao tentar modificar prioridade de ocorrêcia fechada
+52. Instanciar ocorrêcia com tipo "tarefa" 
+53. Instanciar ocorrêcia com tipo "bug"
+54. Instanciar ocorrêcia com tipo "melhoria"
+55. Instanciar ocorrêcia com tipo um inexistente (falha)
+56. Bloqueio ao tentar modificar tipo de ocorrência fechada
 57. Bloqueio ao modificar resposavel da ocorrência por um funcionario do mesmo projeto porém já com 10 ocorrências
-58.
+58. 
 59.
 60.
 

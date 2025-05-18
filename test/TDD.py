@@ -4,7 +4,6 @@ from src.funcionario import Funcionario
 from src.projeto import Projeto
 from test.testHelper import *
 from src.ocorrencia import *
-from datetime import date
 
 class TDD(unittest.TestCase):
     def test1_criar_empresa_W(self):
@@ -218,7 +217,7 @@ class TDD(unittest.TestCase):
         self.assertEqual(ocorrencia1.projeto, projeto1_X)
     
     def test_27_inserir_uma_ocorrencia_em_um_projeto(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -226,8 +225,8 @@ class TDD(unittest.TestCase):
         self.assertEqual(f1.ocorrencias[0], p1.ocorrencias[0])
 
     def test_28_inserir_ocorrencia_projeto_outra_empresa(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
-        empresa_Y, funcionarios2, projetos2 = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
+        empresa_Y, funcionarios2, projetos2 = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         f2 = funcionarios2[0]
@@ -246,7 +245,7 @@ class TDD(unittest.TestCase):
             f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
 
     def test_30_inserir_ocorrencia_projeto_nao_pertence(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(2,2)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(2,2)
         f1 = funcionarios[0]
         p1 = projetos[0]
         f2 = funcionarios[1]
@@ -257,7 +256,7 @@ class TDD(unittest.TestCase):
             f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p2)
 
     def test_31_inserir_mais_de_uma_ocorrencia(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(3,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(3,1)
         f1 = funcionarios[0]
         f2 = funcionarios[1]
         f3 = funcionarios[2]
@@ -274,13 +273,11 @@ class TDD(unittest.TestCase):
         self.assertEqual(f3.ocorrencias[0], p1.ocorrencias[2])
 
     def test_32_funcionario_responsavel_mais_de_uma_ocorrencia(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
-        f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
-        f1.criar_ocorrencia(457, "Descrição da ocorrência 2", TipoOcorrencia.TAREFA, p1)
-        f1.criar_ocorrencia(890, "Descrição da ocorrência 3", TipoOcorrencia.BUG, p1)
+        testHelper.criar_ocorrencias(f1, [TipoOcorrencia.MELHORIA, TipoOcorrencia.TAREFA, TipoOcorrencia.BUG], p1)
         self.assertEqual(len(p1.ocorrencias), 3)
         self.assertEqual(len(f1.ocorrencias), 3)
         self.assertEqual(f1.ocorrencias[0], p1.ocorrencias[0])
@@ -288,25 +285,16 @@ class TDD(unittest.TestCase):
         self.assertEqual(f1.ocorrencias[2], p1.ocorrencias[2])
 
     def test_33_bloqueio_ao_tentar_inserir_11_ocorrencias(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
-        f1.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
-        f1.criar_ocorrencia(2, "Descrição da ocorrência 2", TipoOcorrencia.TAREFA, p1)
-        f1.criar_ocorrencia(3, "Descrição da ocorrência 3", TipoOcorrencia.BUG, p1)
-        f1.criar_ocorrencia(4, "Descrição da ocorrência 4", TipoOcorrencia.MELHORIA, p1)
-        f1.criar_ocorrencia(5, "Descrição da ocorrência 5", TipoOcorrencia.TAREFA, p1)
-        f1.criar_ocorrencia(6, "Descrição da ocorrência 6", TipoOcorrencia.BUG, p1)
-        f1.criar_ocorrencia(7, "Descrição da ocorrência 7", TipoOcorrencia.MELHORIA, p1)
-        f1.criar_ocorrencia(8, "Descrição da ocorrência 8", TipoOcorrencia.TAREFA, p1)
-        f1.criar_ocorrencia(9, "Descrição da ocorrência 9", TipoOcorrencia.BUG, p1)
-        f1.criar_ocorrencia(10, "Descrição da ocorrência 10", TipoOcorrencia.MELHORIA, p1)
+        testHelper.criar_ocorrencias(f1, [TipoOcorrencia.MELHORIA, TipoOcorrencia.BUG]*5, p1) # Criando 10 ocorrencias
         with self.assertRaises(ValueError):
             f1.criar_ocorrencia(11, "Descrição da ocorrência 11", TipoOcorrencia.TAREFA, p1)
 
     def test_34_instanciar_ocorrencia_sem_resumo(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -314,7 +302,7 @@ class TDD(unittest.TestCase):
             f1.criar_ocorrencia(1, "", TipoOcorrencia.MELHORIA, p1)
 
     def test_35_instanciar_ocorrencia_com_prioridade_alta(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -322,7 +310,7 @@ class TDD(unittest.TestCase):
         self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.ALTA)
     
     def test_36_instanciar_ocorrencia_com_prioridade_media(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -330,7 +318,7 @@ class TDD(unittest.TestCase):
         self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.MEDIA)
     
     def test_37_instanciar_ocorrencia_com_prioridade_baixa(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -338,7 +326,7 @@ class TDD(unittest.TestCase):
         self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.BAIXA)
     
     def test_38_instanciar_ocorrencia_com_prioridade_inexistente(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -346,7 +334,7 @@ class TDD(unittest.TestCase):
             f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1, "inexistente")
         
     def test_39_modificar_prioridade_ocorrencia_para_alta(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -355,7 +343,7 @@ class TDD(unittest.TestCase):
         self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.ALTA)
     
     def test_40_modificar_prioridade_ocorrencia_para_media(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -364,7 +352,7 @@ class TDD(unittest.TestCase):
         self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.MEDIA)
 
     def test_41_modificar_prioridade_ocorrencia_para_baixa(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
@@ -373,13 +361,66 @@ class TDD(unittest.TestCase):
         self.assertEqual(ocorrencia1.prioridade, PrioridadeOcorrencia.BAIXA)
     
     def test_42_modificar_prioridade_ocorrencia_para_inexistente(self):
-        empresa_W, funcionarios, projetos = testHelper.empresa_adicionar_funcionarios_projetos(1,1)
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
         f1 = funcionarios[0]
         p1 = projetos[0]
         empresa_W.adicionar_funcionario_em_projeto(f1, p1)
         ocorrencia1 = f1.criar_ocorrencia(123, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
         with self.assertRaises(ValueError):
             ocorrencia1.modificar_prioridade("inexistente")
+
+    def test_43_fechar_uma_ocorrencia_de_um_funcionario_com_1_ocorrencia(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia = f1.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        f1.fechar_ocorrencia(ocorrencia.id)
+        self.assertEqual(len(f1.ocorrencias), 0)
+        self.assertEqual(ocorrencia.estado, EstadoOcorrencia.FECHADO)
+
+    def test_44_fechar_uma_ocorrencia_de_um_funcionario_com_5_ocorrencias(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencias = testHelper.criar_ocorrencias(f1, [TipoOcorrencia.MELHORIA]*5, p1)
+        f1.fechar_ocorrencia(ocorrencias[0].id)
+        self.assertEqual(len(f1.ocorrencias), 4)
+        self.assertEqual(ocorrencias[0].estado, EstadoOcorrencia.FECHADO)
+
+    def test_45_fechar_uma_ocorrencia_de_um_funcionario_com_10_ocorrencias_e_adicionar_ocorrencia_depois(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencias = testHelper.criar_ocorrencias(f1, [TipoOcorrencia.MELHORIA]*10, p1)
+        f1.fechar_ocorrencia(ocorrencias[0].id)
+        f1.criar_ocorrencia(11, "Descrição da ocorrência 11", TipoOcorrencia.MELHORIA, p1)
+        self.assertEqual(len(f1.ocorrencias), 10)
+        self.assertEqual(ocorrencias[0].estado, EstadoOcorrencia.FECHADO)
+        self.assertEqual(len(p1.ocorrencias), 11)
+
+    def test_46_funcionario_tenta_fechar_uma_ocorrencia_ligada_a_outr_ao_funcionario(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(2,1)
+        f1 = funcionarios[0]
+        f2 = funcionarios[1]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p1)
+        ocorrencia = f2.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        with self.assertRaises(ValueError):
+            f1.fechar_ocorrencia(ocorrencia.id)
+
+    def test_47_fechar_ocorrencia_ja_fechado(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(1,1)
+        f1 = funcionarios[0]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        ocorrencia = f1.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        f1.fechar_ocorrencia(ocorrencia.id)
+        with self.assertRaises(ValueError):
+            f1.fechar_ocorrencia(ocorrencia.id)
         
 if __name__ == '__main__':
     unittest.main()

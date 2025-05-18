@@ -39,3 +39,15 @@ class Funcionario():
         projeto.adicionar_ocorrencia(ocorrencia)
 
         return ocorrencia
+    
+    def fechar_ocorrencia(self, id):
+        for i in range(0, len(self.ocorrencias)+1):
+            if i == len(self.ocorrencias):
+                raise ValueError("Ocorrência não ligada ao funcionário.")
+            if self.ocorrencias[i].id == id:
+                ocorrencia = self.ocorrencias[i]
+                ocorrencia.fechar_ocorrencia()
+                self.ocorrencias.pop(i)
+                break
+        
+        

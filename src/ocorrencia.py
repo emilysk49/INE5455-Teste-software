@@ -32,3 +32,6 @@ class Ocorrencia:
         if not isinstance(prioridade, PrioridadeOcorrencia):
             raise ValueError("Prioridade deve ser do tipo PrioridadeOcorrencia")
         self.prioridade = prioridade
+
+    def fechar_ocorrencia(self):
+        self.estado = EstadoOcorrencia.FECHADO
