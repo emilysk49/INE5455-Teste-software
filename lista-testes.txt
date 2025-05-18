@@ -59,20 +59,21 @@ Parte 2
 44. Fechar uma ocorrência onde o funcionario participa de 5 ocorrências
 45. Fechar uma ocorrência onde o funcionario participa de 10 ocorrências e adicionar funcionario a uma nova décima ocorrêcia
 46. Funcionario tenta fechar uma ocorrencia	que pertence a outro funcionario (falha)
-57. Bloqueio ao tentar fechar uma ocorrêcia já fechada
+47. Bloqueio ao tentar fechar uma ocorrêcia já fechada
 48. Modificar responsavel pela ocorrêcia por um funcionario trabalhando no mesmo projeto
-49. Bloqueio ao modificar responsavel pela ocorrêcia por um funcionario que não está no mesmo projeto
-50. Bloqueio ao tentar modificar funcionario responsavel por ocorrêcia fechada
-51. Bloqueio ao tentar modificar prioridade de ocorrêcia fechada
-52. Instanciar ocorrêcia com tipo "tarefa" 
-53. Instanciar ocorrêcia com tipo "bug"
-54. Instanciar ocorrêcia com tipo "melhoria"
-55. Instanciar ocorrêcia com tipo um inexistente (falha)
-56. Bloqueio ao tentar modificar tipo de ocorrência fechada
-57. Bloqueio ao modificar resposavel da ocorrência por um funcionario do mesmo projeto porém já com 10 ocorrências
+49. Modificar responsavel pela ocorrêcia por um funcionario que não está no mesmo projeto (falha)
+50. Modificar responsavel por ocorrêcia que não esteja no projeto (falha)
+51. Modificar resposavel da ocorrência por um funcionario do mesmo projeto porém já com 10 ocorrências (falha)
+52. Modificar funcionario responsavel por ocorrêcia fechada (falha)
+53. Modificar prioridade de ocorrêcia fechada (falha)
+54. Instanciar ocorrêcia com tipo "tarefa" 
+55. Instanciar ocorrêcia com tipo "bug"
+56. Instanciar ocorrêcia com tipo "melhoria"
+57. Instanciar ocorrêcia com tipo um inexistente (falha)
 58. 
 59.
 60.
+61.
 
 
 

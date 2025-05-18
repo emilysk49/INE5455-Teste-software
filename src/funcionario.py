@@ -49,5 +49,17 @@ class Funcionario():
                 ocorrencia.fechar_ocorrencia()
                 self.ocorrencias.pop(i)
                 break
-        
-        
+    
+    def remover_ocorrencia(self, id):
+        for i in range(0, len(self.ocorrencias)+1):
+            if i == len(self.ocorrencias):
+                raise ValueError("Ocorrência não ligada ao funcionário.")
+            if self.ocorrencias[i].id == id:
+                self.ocorrencias[i]
+                self.ocorrencias.pop(i)
+                break
+    
+    def adicionar_ocorrencia(self, ocorrencia):
+        if len(self.ocorrencias) >= 10:
+            raise ValueError("Número máximo de ocorrências atingido.")
+        self.ocorrencias.append(ocorrencia)

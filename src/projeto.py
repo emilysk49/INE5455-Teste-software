@@ -39,3 +39,10 @@ class Projeto():
         if self.data_inicio and self.data_inicio > data:
             raise ValueError("Data de fim não pode ser anterior à data de início.")
         self.data_fim = data
+
+    def modificar_responsavel(self, funcionario, ocorrencia):
+        if funcionario not in self.funcionarios:
+            raise ValueError("Funcionário não está associado a este projeto.")
+        if ocorrencia not in self.ocorrencias:
+            raise ValueError("Ocorrência não está associada a este projeto.")
+        ocorrencia.alterar_funcionario(funcionario)

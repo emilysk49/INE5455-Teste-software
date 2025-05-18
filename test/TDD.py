@@ -421,6 +421,69 @@ class TDD(unittest.TestCase):
         f1.fechar_ocorrencia(ocorrencia.id)
         with self.assertRaises(ValueError):
             f1.fechar_ocorrencia(ocorrencia.id)
-        
+
+    def test_48_modificar_responsavel_por_funcionario_do_mesmo_projeto(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(2,1)
+        f1 = funcionarios[0]
+        f2 = funcionarios[1]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p1)
+        ocorrencia = f1.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        p1.modificar_responsavel(f2, ocorrencia)
+        self.assertEqual(ocorrencia.funcionario, f2)
+        self.assertEqual(len(f1.ocorrencias), 0)
+        self.assertEqual(len(f2.ocorrencias), 1)
+
+    def test_49_modificar_responsavel_por_funcionario_do_projeto_diferente(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(2,2)
+        f1 = funcionarios[0]
+        f2 = funcionarios[1]
+        p1 = projetos[0]
+        p2 = projetos[1]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p2)
+        ocorrencia = f1.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        with self.assertRaises(ValueError):
+            p1.modificar_responsavel(f2, ocorrencia)
+
+    def test_50_modificar_responsavel_por_funcionario_do_mesmo_projeto_mas_ocorrencia_nao_pertence(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(2,2)
+        f1 = funcionarios[0]
+        f2 = funcionarios[1]
+        p1 = projetos[0]
+        p2 = projetos[1]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p1)
+        ocorrencia = Ocorrencia(5616, f1, "Descrição 1", TipoOcorrencia.TAREFA, p2)
+        with self.assertRaises(ValueError):
+            p1.modificar_responsavel(f2, ocorrencia)
+
+    def test_51_modificar_responsavel_por_funcionario_do_mesmo_projeto_mas_possui_10_ocorrencias(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(2,1)
+        f1 = funcionarios[0]
+        f2 = funcionarios[1]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p1)
+        testHelper.criar_ocorrencias(f1, [TipoOcorrencia.MELHORIA]*10, p1)
+        ocorrencia = f2.criar_ocorrencia(222, "Descrição da ocorrência 222", TipoOcorrencia.MELHORIA, p1)
+        with self.assertRaises(ValueError):
+            p1.modificar_responsavel(f1, ocorrencia)
+
+    def test_52_modificar_responsavel_onde_nao_era_responsavel_da_ocorrencia(self):
+        empresa_W, funcionarios, projetos = testHelper.empresa_com_funcionarios_e_projetos(3,1)
+        f1 = funcionarios[0]
+        f2 = funcionarios[1]
+        f3 = funcionarios[2]
+        p1 = projetos[0]
+        empresa_W.adicionar_funcionario_em_projeto(f1, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f2, p1)
+        empresa_W.adicionar_funcionario_em_projeto(f3, p1)
+        ocorrencia = f3.criar_ocorrencia(1, "Descrição da ocorrência 1", TipoOcorrencia.MELHORIA, p1)
+        ocorrencia.funcionario = f1 # Apenas para teste
+        with self.assertRaises(ValueError):
+            p1.modificar_responsavel(f2, ocorrencia)
+            
 if __name__ == '__main__':
     unittest.main()

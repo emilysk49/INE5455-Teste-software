@@ -35,3 +35,8 @@ class Ocorrencia:
 
     def fechar_ocorrencia(self):
         self.estado = EstadoOcorrencia.FECHADO
+    
+    def alterar_funcionario(self, funcionario):
+        self.funcionario.remover_ocorrencia(self.id)
+        self.funcionario = funcionario
+        funcionario.adicionar_ocorrencia(self)
